@@ -2,7 +2,6 @@ module MqttApp where
 
 import Prelude hiding (apply)
 import Control.Monad.Eff (Eff, kind Effect)
-import Data.Array
 
 foreign import data MQTT :: Effect
 type MqttConnection = {
@@ -13,12 +12,17 @@ type MqttConnection = {
 
 foreign import mqtt :: forall e. (MqttConnection) -> Eff (mqtt :: MQTT | e) Unit
 
+onConnect :: String -> String
 onConnect "" = "Connected"
 onConnect error = error
 
+onMessage :: String -> String -> String
 onMessage topic message = topic <> " with message of " <> message
+
+subscriptions :: Array String
 subscriptions = ["#"]
 
+setup :: MqttConnection
 setup = { onMessage: onMessage
    , onConnect: onConnect
    , subscriptions: subscriptions
