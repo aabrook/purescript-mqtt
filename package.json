@@ -1,0 +1,8 @@
+{
+    "name": "purescript-express-examples",
+    "repository": "https://github.com/nkly/purescript-express/tree/master/examples",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+        "mqtt": "^2.14.0"
+    }
+}
